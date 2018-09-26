@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TCC Graphics</title>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #container {
+            width: 98%;
+            height: 100%;
+        }
+    </style>
+
+    <script>
+        window.addEventListener('load', () => {
+            Highcharts.createElement('link', {
+                href: 'https://fonts.googleapis.com/css?family=Dosis:400,600',
+                rel: 'stylesheet',
+                type: 'text/css'
+            }, null, document.getElementsByTagName('head')[0]);
+
+            Highcharts.theme = {
+                colors: [
+                    '#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066',
+                    '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'
+                ],
+                chart: {
+                    backgroundColor: null,
+                    style: {
+                        fontFamily: 'Dosis, sans-serif'
+                    }
+                },
+                title: {
+                    style: {
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        textTransform: 'uppercase'
+                    }
+                },
+                tooltip: {
+                    borderWidth: 0,
+                    backgroundColor: 'rgba(219,219,216,0.8)',
+                    shadow: false
+                },
+                legend: {
+                    itemStyle: {
+                        fontWeight: 'bold',
+                        fontSize: '13px'
+                    }
+                },
+                xAxis: {
+                    gridLineWidth: 1,
+                    labels: {
+                        style: {
+                            fontSize: '12px'
+                        }
+                    }
+                },
+                yAxis: {
+                    minorTickInterval: 'auto',
+                    title: {
+                        style: {
+                            textTransform: 'uppercase'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            fontSize: '12px'
+                        }
+                    }
+                },
+                plotOptions: {
+                    candlestick: {
+                        lineColor: '#404048'
+                    }
+                },
+
+
+                // General
+                background2: '#F0F0EA'
+
+            };
+
+            // Apply the theme
+            Highcharts.setOptions(Highcharts.theme);
+        });
+    </script>
+</head>
+<body>
+<div id="container"></div>
+
+<script>
+    const values = {
+        fibonacci: {
+            title: 'Fibonacci',
+            terms: [5, 10, 15, 20, 25, 30, 35, 40, 45],
+            jsTimes: [0.115, 0.015, 0.16, 1.2, 0.82, 8.635, 94.795, 1098.46, 11907.525],
+            waTimes: [0.055, 0.02, 0.01, 0.05, 0.365, 3.135, 32.335, 360.71, 4212.735]
+        },
+        shellSort: {
+            title: 'ShellSort',
+            sizes: [10, 100, 1000, 2000, 3000, 4000, 5000, 25000, 50000],
+            jsTimes: [0.105, 0.065, 3.645, 1.885, 0.38, 0.52, 0.82, 5.005, 10.26],
+            waTimes: [0.105, 0.01, 0.095, 0.205, 0.315, 0.47, 0.67, 4.095, 8.42]
+        },
+        quickSort: {
+            title: 'QuickSort',
+            sizes: [10, 100, 1000, 10000, 100000, 1000000, 10000000, 20000000, 30000000, 40000000, 50000000],
+            jsTimes: [0.27, 0.075, 2.375, 1.235, 15.78, 179.01, 2171.02, 4224.755, 6662.295, 9594.7, 11478.08],
+            waTimes: [0.065, 0.01, 0.09, 1.065, 13.14, 160.655, 1861.005, 3724.26, 5761.545, 7917.12, 9998.395]
+        },
+        average: (js, wa) => {
+            const avg = js.map((elem, i) => parseFloat(((elem + wa[i]) / 2).toFixed(3)));
+
+            avg.forEach((elem, i) => console.log(`JS: ${js[i]}, WA: ${wa[i]}, AVG: ${elem}`));
+
+            return avg;
+        }
+    };
+
+    const queries = (function () {
+        let urlParams = {};
+        location.href.replace(
+            new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+            function ($0, $1, $2, $3) {
+                urlParams[$1] = $3;
+            }
+        );
+
+        return urlParams;
+    }());
+
+    const object = (function () {
+        if (!queries || !queries.alg) return values.quickSort;
+
+        switch (queries.alg.toUpperCase()) {
+            case 'FIBONACCI':
+                return values.fibonacci;
+            case 'SHELLSORT':
+                return values.shellSort;
+            default:
+                return values.quickSort;
+        }
+    }());
+
+    const isFibonacci = object === values.fibonacci;
+
+    window.addEventListener('load', () => {
+
+        const chart = Highcharts.chart('container', {
+            chart: {
+                zoomType: 'xy',
+                events: {
+                    load: function (event) {
+                        event.target.reflow();
+                    }
+                }
+            },
+            title: {
+                text: object.title
+            },
+            subtitle: {
+                text: isFibonacci ? 'N-ésimo termo da sequência' : null
+            },
+            exporting: {enabled: false},
+            credits: {enabled: false},
+            xAxis: [{
+                categories: isFibonacci ? object.terms : object.sizes,
+                crosshair: true,
+                title: {
+                    text: isFibonacci ? 'Termo a ser descoberto' : 'Tamanho do vetor',
+                    style: {
+                        color: Highcharts.getOptions().colors[0],
+                        fontSize: '20px'
+                    }
+                },
+                labels: {
+                    format: '{value}',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    }
+                }
+            }],
+            yAxis: [
+                {
+                    title: {
+                        text: 'Média de tempo (ms)',
+                        style: {
+                            color: Highcharts.getOptions().colors[0],
+                            fontSize: '20px'
+                        }
+                    },
+                    labels: {
+                        format: '{value} ms',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    }
+                },
+                {
+                    title: {
+                        text: 'Tempo decorrido (ms)',
+                        style: {
+                            color: Highcharts.getOptions().colors[0],
+                            fontSize: '20px'
+                        }
+                    },
+                    labels: {
+                        format: '{value} ms',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    opposite: true
+                }
+            ],
+            plotOptions: {
+                column: {
+                    groupPadding: 0,
+                    dataLabels: {
+                        enabled: true,
+                        allowOverlap: true,
+                        formatter: function () {
+                            return this.point.y.toFixed(3);
+                        }
+                    }
+                },
+                spline: {
+                    dataLabels: {
+                        enabled: false,
+                        allowOverlap: false,
+                        formatter: () => ''
+                    }
+                }
+            },
+            tooltip: {
+                shared: true
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                x: 120,
+                verticalAlign: 'top',
+                y: 100,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+            },
+            series: [{
+                name: 'JavaScript',
+                type: 'column',
+                yAxis: 1,
+                data: object.jsTimes,
+                tooltip: {
+                    valueSuffix: ' ms'
+                }
+
+            }, {
+                name: 'WebAssembly',
+                type: 'column',
+                yAxis: 1,
+                data: object.waTimes,
+                tooltip: {
+                    valueSuffix: ' ms'
+                }
+            }, {
+                name: 'Média',
+                type: 'spline',
+                data: values.average(object.jsTimes, object.waTimes),
+                tooltip: {
+                    valueSuffix: ' ms'
+                }
+            }]
+        });
+    });
+</script>
+</body>
+</html>

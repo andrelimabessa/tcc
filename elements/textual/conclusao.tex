@@ -1,0 +1,53 @@
+\chapter{Conclusão}
+\label{chap:conclusion}
+
+\section{Considerações finais}
+\label{ssec:final-considerations}
+
+Este trabalho se dispôs a fazer uma análise de uma tecnologia emergente no mercado,
+chamada de \textit{WebAssembly}, que tem como principal objetivo permitir que aplicações
+de alto desempenho sejam executados na \textit{web}, porém não faz quaisquer pressupostos
+específicos da \textit{web} ou requer quaisquer recursos específicos da \textit{web},
+sendo assim pode ser empregado em outros ambientes.
+
+Com base no que foi apresentado neste trabalho, pode-se observar que \textit{WebAssembly}
+se destaca em relação a performance devido alguns aspectos diretamente ligados a seus
+objetivos de projeto. Um ponto a ser destacado em relação a \textit{WebAssembly}, é que o
+mesmo possui uma representação intermediária binária extremamente compacta, o que faz com
+que sua transmissão seja mais eficiente que um arquivo textual comum, como por exemplo um
+arquivo \textit{JavaScript}. Além disso, cada arquivo binário representa um único módulo
+e é dividido em seções, e cada seção é dividida em funções. Isso significa que a latência
+de carregamento de um arquivo pode ser minimizada, ao iniciar o processo de compilação a
+medida em que as funções desse arquivo estão sendo recebidas. Junto com essa abordagem,
+é possível paralelizar o processo de compilação, distribuindo o processamento dessas
+funções, assim como é feito pelos motores \textit{V8} e \textit{SpiderMonkey}.
+
+Foi analisado neste trabalho, por meio de experimentos, que a execução de um código
+escrito em \textit{WebAssembly} possui performance superior a um código escrito em
+\textit{JavaScript} na maioria dos casos, através da execução dos algoritmos:
+\textit{ShellSort}, \textit{QuickSort} e o algoritmo que busca o n-ésimo termo da
+sequência \textit{Fibonacci}. O motivo dessa eficiência pode ser compreendida devido
+diferenças cruciais entre sua execução e a execução de um algoritmo escrito em
+\textit{JavaScript}. Uma diferença importante entre um algoritmo escrito em
+\textit{WebAssembly} e \textit{JavaScript}, é que enquanto um algoritmo em
+\textit{JavaScript} precisa ser analisado, para posteriormente ser gerada a Árvore de
+Sintaxe Abstrata e em seguida a representação intermediária, para só então possa ser
+convertido em código de máquina, um algoritmo em \textit{WebAssembly} já é uma
+representação intermediária, e ainda mais eficiente que a representação gerada para um
+código \textit{JavaScript} em alguns motores, precisando apenas ser convertido em código
+de máquina.
+
+\section{Trabalhos futuros}
+\label{ssec:future-works}
+
+Como continuação deste trabalho, deseja-se obter mais métricas de desempenho na execução
+de cada algoritmo, de forma que se consiga realizar uma análise mais precisa sobre
+diferenças de performance entre \textit{WebAssembly} e \textit{JavaScript}. Além disso,
+estabelecer uma metodologia de análise de desempenho voltada a \textit{WebAssembly},
+através de uma biblioteca criada com esse propósito, em que seja possível informar as
+funções a serem testadas e as regras dos dados de entrada e essa biblioteca execute as
+funções passando os dados corretos obedecendo as regras estabelecidas e gere todas as
+métricas obtidas com base na execução de cada função isoladamente.
+
+
+\glsaddall

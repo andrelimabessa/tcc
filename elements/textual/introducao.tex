@@ -1,0 +1,67 @@
+\chapter{Introdução}
+\label{cap:introducao}
+
+A \textit{web} começou como uma simples rede de troca de documentos, mas tem se tornado a
+plataforma de aplicativos mais onipresente de todos os tempos, acessível em uma vasta
+gama de sistemas operacionais e tipos de dispositivos. Por acidente histórico,
+\textit{JavaScript} é a única linguagem de programação suportada nativamente na
+\textit{web}, com exceção de algumas tecnologias disponíveis apenas através de
+\textit{plugins}, como: \textit{ActiveX}, \textit{Java} ou \textit{Flash}.
+Devido à "onipresença" do \textit{JavaScript}, rápidas melhorias de desempenho em máquinas
+virtuais modernas têm sido necessárias, talvez por necessidade absoluta, acabou se
+tornando um alvo de compilação para outras linguagens. Através do \textit{Emscripten},
+mesmo programas escritos em \textit{C} e \textit{C++} podem ser compilados em um
+subconjunto estilizado de baixo nível de \textit{JavaScript}, chamado \textit{asm.js}.
+No entanto, \textit{JavaScript} tem desempenho inconsistente e uma série de outras
+armadilhas, especialmente como um alvo de compilação. \cite{wapaper}
+
+\textit{WebAssembly} é uma alternativa proposta que tem como um de seus objetivos resolver
+problemas presentes na utilização de \textit{JavaScript}, e que tem ganho bastante espaço
+entre desenvolvedores recentemente. \textit{WebAssembly} é um novo tipo de código, que
+pode ser executado em navegadores modernos, trata-se de uma linguagem de baixo nível, como
+\textit{assembly}, com um formato binário compacto que executa com performance quase
+nativa e que fornece um novo alvo de compilação para linguagens como
+\textit{C}/\textit{C++}, para que possam ser executadas na \textit{web}. Também foi
+projetado para executar em conjunto com o \textit{JavaScript}, permitindo que ambos
+trabalhem juntos. \cite{mdn-wa}
+
+\textit{WebAssembly} trás consigo grandes implicações para a plataforma \textit{web}, pois
+fornece uma maneira de executar códigos escritos em vários outros idiomas além de
+\textit{JavaScript} na \textit{web}, além de possibilitar uma velocidade de execução
+próxima da execução de um código nativo. Possui padrão aberto desenvolvido por um grupo
+comunitário da W3C que inclui representantes de todos os principais fornecedores de
+navegadores até então.
+
+Neste trabalho é apresentada uma análise comparativa quantitativa, entre algoritmos
+escritos em \textit{JavaScript} e \textit{WebAssembly}, baseando-se em medições de seus
+tempos de execução, através de experimentos, sendo estes descritos na seção
+\ref{chap:development}, após um embasamento teórico necessário para a compreensão deste
+trabalho descrito na seção \ref{cap:fundamentacao-teorica}, e finalizando com a seção
+\ref{chap:conclusion} onde são feitas as considerações finais.
+
+\section{Objetivos}
+\label{sec:goals}
+
+\subsection{Objetivo Geral}
+\label{sec:general-goal}
+
+A proposta deste trabalho é realizar uma análise comparativa entre algoritmos escritos em
+\textit{WebAssembly} e \textit{JavaScript}, utilizando como base seus tempos de execução
+para identificar em que casos, códigos escritos em \textit{WebAssembly} possuem desempenho
+superior a códigos escritos em \textit{JavaScript}.
+
+\subsection{Objetivos Específicos}
+\label{sec:spec-goals}
+
+\begin{alineas}
+    \item Estudar o processamento realizado internamente em um motor \textit{JavaScript},
+    e como ele processa algoritmos escritos em \textit{WebAssembly} e \textit{JavaScript}.
+    \item Elaborar um modelo de obtenção de métricas de desempenho de execução de códigos
+    escritos em \textit{JavaScript} e \textit{WebAssembly}.
+    \item Desenvolver uma prova de conceito que sirva como base de comparação entre
+    algoritmos escritos em \textit{WebAssembly} e \textit{JavaScript}, objetivando
+    analisar a performance destes.
+    \item Realizar uma análise comparativa de desempenho entre algoritmos escritos
+    em \textit{WebAssembly} e \textit{JavaScript}, utilizando os resultados obtidos na
+    prova de conceito.
+\end{alineas}

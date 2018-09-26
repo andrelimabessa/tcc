@@ -1,0 +1,106 @@
+\input{lib/preambulo}
+
+% Remove as bordas vermelhas e verdes do PDF gerado
+% Coloque 'sim' pare remover
+
+\removerbordasdohyperlink{sim}
+
+% Adiciona a cor Azul a todos os hyperlinks
+
+\cordohyperlink{nao}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%          Informação sobre a IES                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ies{Centro Universitário 7 de Setembro - UNI7}
+\iessigla{UNI7}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%        Informação para TCC de Graduação         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\graduacaoem{Sistemas de Informação}
+\habilitacao{bacharel} % Pode colocar tambem 'licenciada'
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Informação relacionadas ao trabalho     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\autor{Pedro Henrique Silveira Rodrigues}
+\titulo{Análise de performance entre \textit{WebAssembly} e \textit{JavaScript}}
+\data{2017}
+\local{Fortaleza -- Ceará}
+
+% Exemplo: \dataaprovacao{01 de Janeiro de 2012}
+\dataaprovacao{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     Informação sobre o Orientador       %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\orientador{André Jackson Gomes Bessa}
+\orientadories{Centro Universitário Sete de Setembro}
+\orientadorfeminino{nao} % Coloque 'sim' se for do sexo feminino
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%      Informação sobre o Co-orientador   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Deixe o nome do coorientador em branco para remover do documento
+
+\coorientador{}
+\coorientadories{\orientadories}
+\coorientadorfeminino{nao} % Coloque 'sim' se for do sexo feminino
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%      Informação sobre a banca           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Atenção! Deixe o nome do membro da banca para remover da folha de aprovacao
+
+% Exemplo de uso:
+% \membrodabancadois{Prof. Dr. Fulano de Tal}
+% \membrodabancadoisies{Universidade Estadual do Ceará - UECE}
+
+\membrodabancadois{Raimundo Sales Neto e Azevedo}
+\membrodabancadoisies{Centro Universitário Sete de Setembro - UNI7}
+\membrodabancatres{Robério Gomes Patricio}
+\membrodabancatresies{Centro Universitário Sete de Setembro - UNI7}
+\membrodabancaquatro{Eduardo Mendes de Oliveira}
+\membrodabancaquatroies{Centro Universitário Sete de Setembro - UNI7}
+\membrodabancacinco{}
+\membrodabancacincoies{Centro Universitário Sete de Setembro - UNI7}
+\membrodabancaseis{}
+\membrodabancaseisies{Centro Universitário Sete de Setembro - UNI7}
+
+\begin{document}
+
+    % Elementos pré-textuais
+    \imprimircapa
+    \imprimirfolhaderosto{}
+    \imprimirerrata{elements/pre-textual/errata}
+    \imprimirfolhadeaprovacao
+    \imprimirdedicatoria{elements/pre-textual/dedicatoria}
+    \imprimiragradecimentos{elements/pre-textual/agradecimentos}
+    \imprimirepigrafe{elements/pre-textual/epigrafe}
+    \imprimirresumo{elements/pre-textual/resumo}
+    \imprimirabstract{elements/pre-textual/abstract}
+    \imprimirlistadeilustracoes
+    \imprimirlistadetabelas
+    \imprimirlistadecodigosfonte
+    \imprimirsumario
+
+    %Elementos textuais
+    \textual
+    \input{elements/textual/introducao}
+    \input{elements/textual/fundamentacao-teorica}
+    \input{elements/textual/desenvolvimento}
+    \input{elements/textual/conclusao}
+
+    %Elementos pós-textuais
+    \bibliography{elements/pos-textual/referencias}
+    \imprimirglossario
+    \imprimirindice
+
+\end{document}
